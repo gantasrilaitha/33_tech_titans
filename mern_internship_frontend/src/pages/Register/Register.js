@@ -15,15 +15,12 @@ import { addData } from '../../components/context/ContextProvider';
 const Register = () => {
 
   const [inputdata, setInputData] = useState({
-    fname: "",
-    lname: "",
+    pid:"",
+    pname:"",
+    prname: "",
     email: "",
-    mobile: "",
-    gender: "",
-    location: "",
-    collegename:"",
-    projectname:"",
-    domain:""
+    domain: "",
+    location: ""
   });
 
   const [status, setStatus] = useState("Active");
@@ -61,49 +58,48 @@ const Register = () => {
   const submitUserData = async(e) => {
     e.preventDefault();
 
-    const { fname, lname, email, mobile, gender, location,collegename,projectname,domain } = inputdata;
+    const { pid,pname,prname, email,domain, location } = inputdata;
 
-    if (fname === "") {
-      toast.error("First name is Required !")
-    } else if (lname === "") {
-      toast.error("Last name is Required !")
-    } else if (email === "") {
+    if (pid === "") {
+      toast.error("Project ID is Required !")
+    } else if (pname === "") {
+      toast.error("Project name is Required !")
+    } else if (prname === "") {
+      toast.error("Professor name is Required !")
+    }
+    else if (email === "") {
       toast.error("Email is Required !")
     } else if (!email.includes("@")) {
       toast.error("Enter Valid Email !")
-    } else if (mobile === "") {
-      toast.error("Mobile is Required !")
-    } else if (mobile.length > 10) {
-      toast.error("Enter Valid Mobile!f")
-    } else if (gender === "") {
-      toast.error("Gender is Required !")
+    //} else if (mobile === "") {
+      //toast.error("Mobile is Required !")
+    //} else if (mobile.length > 10) {
+    //  toast.error("Enter Valid Mobile!f")
+    //} else if (gender === "") {
+    //  toast.error("Gender is Required !")
     } else if (status === "") {
       toast.error("Status is Required !")
     } else if (image === "") {
-      toast.error("Prfile is Required !")
+      toast.error("Profile is Required !")
     } else if (location === "") {
-      toast.error("Location is Required !")
-    }else if (collegename === "") {
-      toast.error("College Name is Required !")
-    }else if (projectname === "") {
-      toast.error("Project Name is Required !")
-    }else if (domain === "") {
+      toast.error("location is Required !")
+    } else if (domain === "") {
       toast.error("Domain is Required !")
-    } else {
+    } 
+      else {
       console.log(image);
 
       const data = new FormData();
-      data.append("fname",fname)
-      data.append("lname",lname)
+      data.append("pid",pid)
+      data.append("pname",pname)
+      data.append("prname",prname)
       data.append("email",email)
-      data.append("mobile",mobile)
-      data.append("gender",gender)
+      //data.append("mobile",mobile)
+      //data.append("gender",gender)
+      data.append("domain",domain)
       data.append("status",status)
       data.append("user_profile",image)
       data.append("location",location)
-      data.append("collegename",collegename)
-      data.append("projectname",projectname)
-      data.append("domain",domain)
 
       const config = {
         "Content-Type":"multipart/form-data"
@@ -114,15 +110,12 @@ const Register = () => {
       if(response.status === 200){
         setInputData({
           ...inputdata,
-          fname:"",
-          lname: "",
+          pid:"",
+          pname:"",
+          prname: "",
           email: "",
-          mobile: "",
-          gender: "",
-          location: "",
-          collegename:"",
-          projectname:"",
-          domain:""
+          domain: "",
+          location: ""
         });
         setStatus("");
         setImage("");
@@ -160,40 +153,27 @@ const Register = () => {
             <Form>
               <Row>
                 <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
-                  <Form.Label>First name</Form.Label>
-                  <Form.Control type="text" name='fname' value={inputdata.fname} onChange={setInputValue} placeholder='Enter FirstName' />
+                  <Form.Label>Project ID</Form.Label>
+                  <Form.Control type="text" name='pid' value={inputdata.pid} onChange={setInputValue} placeholder='Enter Project Id' />
                 </Form.Group>
                 <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
-                  <Form.Label>Last Name</Form.Label>
-                  <Form.Control type="text" name='lname' value={inputdata.lname} onChange={setInputValue} placeholder='Enter LastName' />
+                  <Form.Label>Project Name</Form.Label>
+                  <Form.Control type="text" name='pname' value={inputdata.pname} onChange={setInputValue} placeholder='Enter Project Name' />
                 </Form.Group>
                 <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
                   <Form.Control type="email" name='email' value={inputdata.email} onChange={setInputValue} placeholder='Enter Email' />
                 </Form.Group>
                 <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
-                  <Form.Label>Mobile</Form.Label>
-                  <Form.Control type="text" name='mobile' value={inputdata.mobile} onChange={setInputValue} placeholder='Enter Mobile' />
+                  <Form.Label>Professor Name</Form.Label>
+                  <Form.Control type="text" name='prname' value={inputdata.prname} onChange={setInputValue} placeholder='Enter Professor Name' />
                 </Form.Group>
                 <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
-                  <Form.Label>Select Your Gender</Form.Label>
-                  <Form.Check
-                    type={"radio"}
-                    label={`Male`}
-                    name="gender"
-                    value={"Male"}
-                    onChange={setInputValue}
-                  />
-                  <Form.Check
-                    type={"radio"}
-                    label={`Female`}
-                    name="gender"
-                    value={"Female"}
-                    onChange={setInputValue}
-                  />
+                  <Form.Label>Domain</Form.Label>
+                  <Form.Control type="text" name='domain' value={inputdata.domain} onChange={setInputValue} placeholder='Enter Domain' />
                 </Form.Group>
                 <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
-                  <Form.Label>Select Your Status of Your Project</Form.Label>
+                  <Form.Label>Select Your Status</Form.Label>
                   <Select options={options}  onChange={setStatusValue} />
                 </Form.Group>
                 <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
@@ -203,18 +183,6 @@ const Register = () => {
                 <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
                   <Form.Label>Enter Your Location</Form.Label>
                   <Form.Control type="text" name='location' value={inputdata.location} onChange={setInputValue} placeholder='Enter Your Location' />
-                </Form.Group>
-                <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
-                  <Form.Label>Enter Your College Name</Form.Label>
-                  <Form.Control type="text" name='collegename' value={inputdata.collegename} onChange={setInputValue} placeholder='Enter Your College Name' />
-                </Form.Group>
-                <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
-                  <Form.Label>Enter Your Project Name</Form.Label>
-                  <Form.Control type="text" name='projectname' value={inputdata.projectname} onChange={setInputValue} placeholder='Enter Your Project Name' />
-                </Form.Group>
-                <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
-                  <Form.Label>Enter Your Project Domain - for eg:AI/ML,WEBTECH,etc</Form.Label>
-                  <Form.Control type="text" name='domain' value={inputdata.domain} onChange={setInputValue} placeholder='Enter Your Domain of project' />
                 </Form.Group>
                 <Button variant="primary" type="submit" onClick={submitUserData}>
                   Submit

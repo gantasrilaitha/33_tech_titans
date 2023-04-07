@@ -17,8 +17,7 @@ const Home = () => {
   const [userdata,setUserData] = useState([]);
   const [showspin,setShowSpin] = useState(true);
   const [search,setSearch] = useState("");
-  const [searchdomain,setSearchdomain]=useState("");
-  const [gender,setGender] = useState("All");
+  const [domain,setDomain] = useState("");
   const [status,setStatus] = useState("All");
   const [sort,setSort] = useState("new");
   const [page,setPage] = useState(1);
@@ -37,7 +36,7 @@ const Home = () => {
 
   // get user
   const userGet = async()=>{
-    const response = await usergetfunc(search,searchdomain,gender,status,sort,page);
+    const response = await usergetfunc(search,domain,status,sort,page);
     if(response.status === 200){
       setUserData(response.data.usersdata);
       setPageCount(response.data.Pagination.pageCount)
@@ -89,20 +88,20 @@ const Home = () => {
     setTimeout(()=>{
         setShowSpin(false)
     },1200)
-  },[search,searchdomain,gender,status,sort,page])
+  },[search,domain,status,sort,page])
 
   return (
     <>
     {
-      useradd ?  <Alert variant="success" onClose={() => setUseradd("")} dismissible>{useradd.fname.toUpperCase()} Succesfully Added</Alert>:""
+      useradd ?  <Alert variant="success" onClose={() => setUseradd("")} dismissible>{useradd.pname.toUpperCase()} Succesfully Added</Alert>:""
     }
 
     {
-      update ? <Alert variant="primary" onClose={() => setUpdate("")} dismissible>{update.fname.toUpperCase()} Succesfully Update</Alert>:""
+      update ? <Alert variant="primary" onClose={() => setUpdate("")} dismissible>{update.pname.toUpperCase()} Succesfully Update</Alert>:""
     }
 
     {
-      deletedata ? <Alert variant="danger" onClose={() => setDLtdata("")} dismissible>{deletedata.fname.toUpperCase()} Succesfully Delete</Alert>:""
+      deletedata ? <Alert variant="danger" onClose={() => setDLtdata("")} dismissible>{deletedata.pname.toUpperCase()} Succesfully Delete</Alert>:""
     }
 
       <div className="container">
@@ -113,20 +112,10 @@ const Home = () => {
               <Form className="d-flex">
                 <Form.Control
                   type="search"
-                  placeholder="Search By Project Name"
+                  placeholder="Search"
                   className="me-2"
-                  aria-label="Search By Project Name"
+                  aria-label="Search"
                   onChange={(e)=>setSearch(e.target.value)}
-                />
-                <Button variant="success" className='search_btn'>Search</Button>
-              </Form>
-              <Form className="d-flex">
-                <Form.Control
-                  type="search"
-                  placeholder="Search By Domain"
-                  className="me-2"
-                   aria-label="Search By Domain"
-                  onChange={(e)=>setSearchdomain(e.target.value)}
                 />
                 <Button variant="success" className='search_btn'>Search</Button>
               </Form>
@@ -141,8 +130,7 @@ const Home = () => {
             <div className="export_csv">
               <Button className='export_btn' onClick={exportuser}>Export To Csv</Button>
             </div>
-
-            {/* <div className="filter_gender">
+            <div className="filter_gender">
               <div className="filter">
                 <h3>Filter By Domain</h3>
                 <div className="gender d-flex justify-content-between">
@@ -151,54 +139,13 @@ const Home = () => {
                     label={`All`}
                     name="domain"
                     value={"All"}
-                    onChange={(e)=>setGender(e.target.value)}
+                    onChange={(e)=>setDomain(e.target.value)}
                     defaultChecked
                   />
-                  <Form.Check
-                    type={"radio"}
-                    label={`AI/ML`}
-                    name="domain"
-                    value={"AI/ML"}
-                    onChange={(e)=>setGender(e.target.value)}
-                  />
-                  <Form.Check
-                    type={"radio"}
-                    label={`WebDev`}
-                    name="domain"
-                    value={"WebDev"}
-                    onChange={(e)=>setGender(e.target.value)}
-                  />
-                  <Form.Check
-                    type={"radio"}
-                    label={`Data Science`}
-                    name="domain"
-                    value={"DataScience"}
-                    onChange={(e)=>setGender(e.target.value)}
-                  />
-                  <Form.Check
-                    type={"radio"}
-                    label={`Block-Chain`}
-                    name="domain"
-                    value={"Blockchain"}
-                    onChange={(e)=>setGender(e.target.value)}
-                  />
-                  <Form.Check
-                    type={"radio"}
-                    label={`IOT`}
-                    name="domain"
-                    value={"IOT"}
-                    onChange={(e)=>setGender(e.target.value)}
-                  />
-                  <Form.Check
-                    type={"radio"}
-                    label={`Computer Networks`}
-                    name="domain"
-                    value={"ComputerNetworks"}
-                    onChange={(e)=>setGender(e.target.value)}
-                  />
+                  
                 </div>
               </div>
-            </div> */}
+            </div>
 
             {/* short by value */}
             <div className="filter_newold">

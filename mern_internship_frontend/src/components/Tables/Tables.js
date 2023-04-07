@@ -33,12 +33,12 @@ const Tables = ({ userdata, deleteUser, userGet, handlePrevious, handleNext, pag
               <Table className='align-items-center' responsive="sm">
                 <thead className='thead-dark'>
                   <tr className='table-dark'>
-                    <th>Project ID</th>
-                    <th>Project Name</th>
-                    <th>Domain</th>
-                    <th>Contributor Name</th>
+                    <th>PROJECT ID</th>
+                    <th>ProjectName</th>
+                    <th>ProffesorName,Clg</th>
                     <th>Email</th>
-                    <th>&nbsp;&nbsp;&nbsp;Status</th>
+                    <th>Domain</th>
+                    <th>&nbsp;&nbsp;&nbsp;Status of Project</th>
                     <th>Profile</th>
                     <th>Action</th>
                   </tr>
@@ -49,11 +49,14 @@ const Tables = ({ userdata, deleteUser, userGet, handlePrevious, handleNext, pag
                       return (
                         <>
                           <tr>
-                            <td>{index + 1 + (page - 1)*4}</td> 
-                            <td>{element.projectname}</td>
-                            <td>{element.domain}</td>
-                            <td>{element.fname + element.lname}</td>
+                             
+                            <td>{element.pid}</td>
+                            
+                            <td>{element.pname}</td>
+                            <td>{element.prname}</td>
                             <td>{element.email}</td>
+                            <td>{element.domain}</td>
+                            
                             <td className='d-flex align-items-center'>
                               <Dropdown className='text-center'>
                                 <Dropdown.Toggle className='dropdown_btn' id="dropdown-basic">

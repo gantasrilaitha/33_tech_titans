@@ -46,14 +46,12 @@ const Profile = () => {
                 </div>
               </Row>
               <div className='text-center'>
-                <h3>{userprofile.fname + userprofile.lname}</h3>
+                <h3>{userprofile.pid}</h3>
+                <h4><i class="fa-solid fa-user"></i>&nbsp;:- <span>{userprofile.pname}</span> </h4>
+                <h4><i class="fa-solid fa-person"></i>&nbsp;:- <span>{userprofile.prname}</span> </h4>
                 <h4><i class="fa-solid fa-envelope email"></i>&nbsp;:- <span>{userprofile.email}</span> </h4>
-                <h5><i class="fa-solid fa-mobile"></i>&nbsp;:- <span>{userprofile.mobile}</span> </h5>
-                <h4><i class="fa-solid fa-person"></i>&nbsp;:- <span>{userprofile.gender}</span> </h4>
+                <h5><i class="fa-solid fa-graduation-cap"></i>&nbsp;:- <span>{userprofile.domain}</span> </h5>
                 <h4><i class="fa-solid fa-location-pin location"></i>&nbsp;:- <span>{userprofile.location}</span> </h4>
-                <h4><i class="fa-solid fa-location-pin collegename"></i>&nbsp;:- <span>{userprofile.collegename}</span> </h4>
-                <h4><i class="fa-solid fa-location-pin projectname"></i>&nbsp;:- <span>{userprofile.projectname}</span> </h4>
-                <h4><i class="fa-solid fa-location-pin domain"></i>&nbsp;:- <span>{userprofile.domain}</span> </h4>
                 <h4>Status&nbsp;:- <span>{userprofile.status}</span> </h4>
                 <h5><i class="fa-solid fa-calendar-days calendar"></i>&nbsp;Date Created&nbsp;:- <span>{moment(userprofile.datecreated).format("DD-MM-YYYY")}</span> </h5>
                 <h5> <i class="fa-solid fa-calendar-days calendar"></i>&nbsp;Date Updated&nbsp;:- <span>{userprofile.dateUpdated}</span> </h5>
