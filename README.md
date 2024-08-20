@@ -1,2 +1,4 @@
-# 33_tech_titans
-dot slash project
+# 33_tech_titans-DotSlash(Hackathon @PESU) Project
+Dot slash project
+
+
